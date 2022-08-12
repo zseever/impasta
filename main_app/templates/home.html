@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
+<h1>Featured Restaurants</h1>
+<ul class="horiz-container">
+    {% for restaurant in restaurants %}
+    <div class="rest-container">
+        <li>{{ restaurant.name }}</li>
+        <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+    </div>
+    {% endfor %}
+</ul>
+
+<h1>Featured Restaurants</h1>
+<ul class="horiz-container">
+    {% for restaurant in restaurants %}
+    <div class="rest-container">
+        <li>{{ restaurant.name }}</li>
+        <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+    </div>
+    {% endfor %}
+</ul>
 
 {% endblock %}

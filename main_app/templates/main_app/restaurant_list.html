@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Restaurants</h1>
+<div class="horiz-container">
+    {% for cuisine in cuisines %}
+        <div>
+            <p>{{ cuisine }}</p>
+            {% for restaurant in restaurant_list %}
+                {% if restaurant.cuisine == cuisine %}
+                    <div class="rest-container">
+                        <li>{{ restaurant.name }}</li>
+                        <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

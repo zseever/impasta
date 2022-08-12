@@ -1,3 +1,47 @@
 body {
     background-color: rgb(190, 143, 81);
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: rgb(219, 184, 137);
+    display:flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 3vmin;
+    height:7vh;
+}
+
+nav > * {
+    margin:0 1vw;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+img {
+    width:15vw;
+}
+
+h1 {
+    text-align: center;
+}
+
+.horiz-container {
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    background: rgb(149, 145, 145);
+}
+
+.rest-container {
+    text-align: center;
+}
+
+.align-left {
+    margin-right: auto;
 }

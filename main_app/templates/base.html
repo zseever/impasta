@@ -11,9 +11,9 @@
 </head>
 <body>
     <nav>
-        <a href="/">Impasta</a>
+        <a href="/" class="align-left">Impasta</a>
         <a href="/">Search</a>
-        <a href="/restaurants">Restaurants</a>
+        <a href="{% url 'restaurant_index' %}">Restaurants</a>
         <a href="/Recipes">Recipes</a>
     {% if user.is_authenticated %}
         <a href="{% url 'logout' %}">Log Out</a>
