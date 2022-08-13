@@ -7,7 +7,7 @@ from .models import Restaurant
 
 # Create your views here.
 def home(request):
-    restaurants = Restaurant.objects.all()
+    restaurants = Restaurant.objects.all()[:5]
     # Render 5 restaurants - image + Name
     return render(request,'home.html', { 'restaurants':restaurants})
 
