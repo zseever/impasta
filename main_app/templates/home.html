@@ -4,10 +4,14 @@
 <h1>Featured Restaurants</h1>
 <ul class="horiz-container">
     {% for restaurant in restaurants %}
-    <div class="rest-container">
-        <li>{{ restaurant.name }}</li>
-        <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
-    </div>
+    <a href="">
+        <!-- fix the css because of this anchor tag, add links once we have restaurant show page -->
+        <div class="rest-container">
+            <div class="empty-container"></div>
+            <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+            <li>{{ restaurant.name }}</li>
+        </div>
+    </a>
     {% endfor %}
 </ul>
 
@@ -15,8 +19,8 @@
 <ul class="horiz-container">
     {% for restaurant in restaurants %}
     <div class="rest-container">
-        <li>{{ restaurant.name }}</li>
         <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+        <li>{{ restaurant.name }}</li>
     </div>
     {% endfor %}
 </ul>
