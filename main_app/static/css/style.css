@@ -30,8 +30,22 @@ a {
     color:black;
 }
 
-img {
+.align-left > img {
+    width: 200px;
+}
+
+.index-img {
     width:15vw;
+    height:15vw;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.show-img {
+    width:40vw;
+    height:40vw;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 h1 {
@@ -57,10 +71,7 @@ h1 {
     /* border: 0.3vmin solid black; */
 }
 
-.empty-container {
-
-}
-
 .align-left {
     margin-right: auto;
 }
+

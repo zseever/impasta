@@ -1,6 +1,7 @@
 from ctypes import addressof
 from pydoc import describe
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Restaurant(models.Model):
@@ -53,3 +54,23 @@ class Ingredient(models.Model):
         Recipe,
         on_delete=models.CASCADE
     )
+
+class Review(models.Model):
+    RATINGS = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5')
+    )
+    rating = models.IntegerField(default=5, choices=RATINGS)
+    comment = models.TextField(max_length=2500)
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE
+    )
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE
+    )
+

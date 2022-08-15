@@ -43,3 +43,7 @@ class RestaurantDetail(DetailView):
 class MenuItemDetail(DetailView):
     model = MenuItem
     fields = '__all__'
+
+class RecipeDetail(DetailView):
+    model = Recipe
+    fields = '__all__'

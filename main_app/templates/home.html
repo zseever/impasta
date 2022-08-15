@@ -8,7 +8,7 @@
         <!-- fix the css because of this anchor tag, add links once we have restaurant show page -->
         <div class="rest-container">
             <div class="empty-container"></div>
-            <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+            <img src="{{ restaurant.img }}" class="index-img" alt="{{ restaurant.name }}">
             <li>{{ restaurant.name }}</li>
         </div>
     </a>
@@ -19,7 +19,8 @@
 <ul class="horiz-container">
     {% for restaurant in restaurants %}
     <div class="rest-container">
-        <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
+        <div class="empty-container"></div>
+        <img src="{{ restaurant.img }}" class="index-img" alt="{{ restaurant.name }}">
         <li>{{ restaurant.name }}</li>
     </div>
     {% endfor %}

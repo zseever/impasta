@@ -5,8 +5,18 @@
 <p>{{ menuitem.course }}</p>
 <p>{{ menuitem.price }}</p>
 <p>{{ menuitem.desc }}</p>
-<img src="{{ menuitem.img }}">
+<img src="{{ menuitem.img }}" class="show-img">
 <p>Restaurant: {{ menuitem.restaurant.name }}</p>
 
-
+<h1>Related Recipes</h1>
+{% for recipe in menuitem.recipe_set.all %}
+    <a href="{% url 'recipes_detail' recipe.id %}">
+        <div>
+            <img src="{{ recipe.img }}" class="index-img">
+            <p>{{ recipe.name }}</p>
+            <p>{{ recipe.time }}</p>
+            <p>avg rating</p>
+        </div>
+    </a>
+{% endfor %}
 {% endblock %}
