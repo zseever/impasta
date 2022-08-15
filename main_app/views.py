@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction
+from .forms import InstructionForm
 
 # Create your views here.
 def home(request):
@@ -47,3 +49,24 @@ class MenuItemDetail(DetailView):
 class RecipeDetail(DetailView):
     model = Recipe
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(RecipeDetail, self).get_context_data(**kwargs)
+        context['instruction_form'] = InstructionForm()
+        return context
+
+class RecipeCreate(CreateView):
+    model = Recipe
+    fields = '__all__'
+    success_url= '/recipes/'
+
+    def get_success_url(self) -> str:
+        return f'/recipes/{self.object.id}'
+
+def add_instruction(request, recipe_id):
+    form = InstructionForm(request.POST)
+    if form.is_valid():
+        new_instruction = form.save(commit=False)
+        new_instruction.recipe_id = recipe_id
+        new_instruction.save()
+    return redirect('recipes_detail', recipe_id=recipe_id)

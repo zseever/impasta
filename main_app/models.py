@@ -1,6 +1,7 @@
 from ctypes import addressof
 from pydoc import describe
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -28,16 +29,19 @@ class MenuItem(models.Model):
     )
 
     def __str__(self):
-        return f'Added {self.name} ({self.price}) to {self.restaurant}'
+        return f'{self.restaurant.name}\'s {self.name}'
 
 
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=250)
-    img = models.CharField(max_length=250)
-    time = models.CharField(max_length=250)
-    tags = models.CharField(max_length=250)
-    menu_item = models.ManyToManyField(MenuItem)
+    name = models.CharField(max_length=250, verbose_name="Recipe Name")
+    img = models.CharField(max_length=250, verbose_name="Image URL")
+    time = models.CharField(max_length=250, verbose_name="Prep Time")
+    tags = models.CharField(max_length=250, verbose_name="Tags")
+    menu_item = models.ManyToManyField(MenuItem, verbose_name="Related Menu Item(s)")
+
+    def get_absolute_url(self):
+        return reverse('recipes_detail', kwargs={'recipe_id' : self.id})
     
 class Instruction(models.Model):
     order = models.IntegerField()
