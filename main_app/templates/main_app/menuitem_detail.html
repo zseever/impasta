@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Menu Item</h1>
+<h1>{{ menuitem.name.capitalize }}</h1>
+<p>{{ menuitem.course }}</p>
+<p>{{ menuitem.price }}</p>
+<p>{{ menuitem.desc }}</p>
+<img src="{{ menuitem.img }}">
+<p>Restaurant: {{ menuitem.restaurant.name }}</p>
 
 
 {% endblock %}
