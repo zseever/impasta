@@ -8,6 +8,13 @@
 
 
 <h2>Ingredients</h2>
+<form action="{% url 'add_ingredients' recipe.id %}" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ ingredient_form.as_table }}
+    <table>
+    <input type="submit" value="Add Ingredient">
+</form>
 <table>
   <thead>
     <tr>
@@ -32,7 +39,7 @@
         {{ instruction_form.as_table }}
     <table>
     <input type="submit" value="Add Instruction">
-  </form>
+</form>
 <table>
     <thead>
       <tr>

@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction
-from .forms import InstructionForm
+from .forms import InstructionForm, IngredientForm
 
 # Create your views here.
 def home(request):
@@ -53,6 +53,7 @@ class RecipeDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(RecipeDetail, self).get_context_data(**kwargs)
         context['instruction_form'] = InstructionForm()
+        context['ingredient_form'] = IngredientForm()
         return context
 
 class RecipeCreate(CreateView):
@@ -69,4 +70,12 @@ def add_instruction(request, recipe_id):
         new_instruction = form.save(commit=False)
         new_instruction.recipe_id = recipe_id
         new_instruction.save()
-    return redirect('recipes_detail', recipe_id=recipe_id)
+    return redirect('recipes_detail', pk=recipe_id)
+
+def add_ingredient(request, recipe_id):
+    form = IngredientForm(request.POST)
+    if form.is_valid():
+        new_ingredient = form.save(commit=False)
+        new_ingredient.recipe_id = recipe_id
+        new_ingredient.save()
+    return redirect('recipes_detail', pk=recipe_id)
