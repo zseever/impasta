@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView
 
-from .models import Restaurant
+from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction
 
 # Create your views here.
 def home(request):
@@ -37,4 +37,9 @@ def signup(request):
 
 class RestaurantDetail(DetailView):
     model = Restaurant
+    fields = '__all__'
+
+
+class MenuItemDetail(DetailView):
+    model = MenuItem
     fields = '__all__'

@@ -9,11 +9,13 @@
 
 <div>
     {% for item in restaurant.menuitem_set.all %}
-    <div>
-        <img src="{{ item.img }}">
-        <p>{{ item.name }}</p>
-        <p>{{ item.desc }}</p>
-    </div>
+    <a href="{% url 'menuitems_detail' restaurant_id=restaurant.id pk=item.id %}">
+        <div>
+            <img src="{{ item.img }}">
+            <p>{{ item.name }}</p>
+            <p>{{ item.desc }}</p>
+        </div>
+    </a>
     {% endfor %}
 </div>
 
