@@ -4,7 +4,7 @@
 <h1>Featured Restaurants</h1>
 <ul class="horiz-container">
     {% for restaurant in restaurants %}
-    <a href="">
+    <a href="{% url 'restaurants_detail' restaurant.id %}">
         <!-- fix the css because of this anchor tag, add links once we have restaurant show page -->
         <div class="rest-container">
             <div class="empty-container"></div>

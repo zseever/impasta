@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ restaurant.name }}</h1>
+<img src="{{ restaurant.img }}">
+<p>Address: {{ restaurant.address }}</p>
+<p>Phone Number: {{ restaurant.phone }}</p>
+<p>Cuisine: {{ restaurant.cuisine }}</p>
+<p>Description: {{ restaurant.desc }}</p>
+
+<div>
+    {% for item in restaurant.menuitem_set.all %}
+    <div>
+        <img src="{{ item.img }}">
+        <p>{{ item.name }}</p>
+        <p>{{ item.desc }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
