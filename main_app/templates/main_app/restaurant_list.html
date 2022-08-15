@@ -8,10 +8,12 @@
             <p>{{ cuisine }}</p>
             {% for restaurant in restaurant_list %}
                 {% if restaurant.cuisine == cuisine %}
+                <a href="{% url 'restaurants_detail' restaurant.id %}">
                     <div class="rest-container">
                         <li>{{ restaurant.name }}</li>
                         <img src="{{ restaurant.img }}" alt="{{ restaurant.name }}">
                     </div>
+                </a>
                 {% endif %}
             {% endfor %}
         </div>
