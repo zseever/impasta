@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ recipe.name }}</h1>
+<img src="{{ recipe.img }}" class="show-img">
+<p>Prep Time: {{ recipe.time }}</p>
+<p>Tags: {{ recipe.tags }}</p>
+
+
+<h2>Ingredients</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Ingredient</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ingredient in recipe.ingredient_set.all %}
+      <tr>
+        <td>{{ ingredient.quantity }}</td>
+        <td>{{ ingredient.name }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Instructions</h2>
+<table>
+    <thead>
+      <tr>
+        <th>Step #</th>
+        <th>Instruction</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for instruction in recipe.instruction_set.all %}
+        <tr>
+          <td>{{ instruction.order }}</td>
+          <td>{{ instruction.step }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+<h2>Reviews</h2>
+<table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Rating</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in recipe.review_set.all %}
+        <tr>
+          <td>{{ review.user }}</td>
+          <td>{{ review.rating }}</td>
+          <td>{{ review.comment }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

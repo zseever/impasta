@@ -14,11 +14,11 @@
 </head>
 <body>
     <nav>
-        <a href="/" class="align-left"><img src="https://o.remove.bg/downloads/a9d001e3-80b3-4a0a-b766-6f706aa61178/.png-removebg-preview.png" alt="impasta"></a>
+        <a href="/" class="align-left"><img src="https://i.imgur.com/zNXcbpI.png" alt="impasta"></a>
         <a href="/">Search</a>
         <a href="{% url 'restaurants_index' %}">Restaurants</a>
-        <a href="/Recipes">Recipes</a>
     {% if user.is_authenticated %}
+        <a href="/Recipes">Add Recipe</a>
         <a href="{% url 'logout' %}">Log Out</a>
     {% else %}
         <a href="{% url 'signup' %}">Sign Up</a>
