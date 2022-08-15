@@ -29,3 +29,27 @@ class MenuItem(models.Model):
     def __str__(self):
         return f'Added {self.name} ({self.price}) to {self.restaurant}'
 
+
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=250)
+    img = models.CharField(max_length=250)
+    time = models.CharField(max_length=250)
+    tags = models.CharField(max_length=250)
+    menu_item = models.ManyToManyField(MenuItem)
+    
+class Instruction(models.Model):
+    order = models.IntegerField()
+    step = models.TextField(max_length=2500)
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE
+    )
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=250)
+    quantity = models.CharField(max_length=250)
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE
+    )
