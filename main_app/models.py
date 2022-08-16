@@ -39,13 +39,21 @@ class Recipe(models.Model):
     time = models.CharField(max_length=250, verbose_name="Prep Time")
     tags = models.CharField(max_length=250, verbose_name="Tags")
     menu_item = models.ManyToManyField(MenuItem, verbose_name="Related Menu Item(s)")
-
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    
     def get_absolute_url(self):
         return reverse('recipes_detail', kwargs={'pk' : self.id})
     
 class Instruction(models.Model):
     order = models.IntegerField()
     step = models.TextField(max_length=2500)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE
@@ -54,6 +62,10 @@ class Instruction(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(max_length=250)
     quantity = models.CharField(max_length=250)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE
