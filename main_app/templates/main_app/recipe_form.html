@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Add New Recipe</h1>
+{% if object %}
+    <h1>Edit {{ object.name }} </h1>
+{% else %}
+    <h1>Add New Recipe</h1>
+{% endif %}
 
 <form action="" method="POST">
     {% csrf_token %}

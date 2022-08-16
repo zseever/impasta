@@ -2,6 +2,10 @@
 {% block content %}
 
 <h1>{{ recipe.name }}</h1>
+  <div>
+    <a href="{% url 'recipes_update' recipe.id %}">Edit</a>
+    <a href="{% url 'recipes_delete' recipe.id %}">Delete</a>
+  </div>
 <img src="{{ recipe.img }}" class="show-img">
 <p>Prep Time: {{ recipe.time }}</p>
 <p>Tags: {{ recipe.tags }}</p>
@@ -20,6 +24,7 @@
     <tr>
       <th>Quantity</th>
       <th>Ingredient</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +32,12 @@
       <tr>
         <td>{{ ingredient.quantity }}</td>
         <td>{{ ingredient.name }}</td>
+        <td>
+          <form action="{% url 'ingredients_delete' ingredient.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="X">
+          </form>
+        </td>  
       </tr>
     {% endfor %}
   </tbody>
@@ -45,6 +56,7 @@
       <tr>
         <th>Step #</th>
         <th>Instruction</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -52,6 +64,12 @@
         <tr>
           <td>{{ instruction.order }}</td>
           <td>{{ instruction.step }}</td>
+          <td>
+            <form action="{% url 'instructions_delete' instruction.id %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="X">
+            </form>
+          </td>  
         </tr>
       {% endfor %}
     </tbody>
