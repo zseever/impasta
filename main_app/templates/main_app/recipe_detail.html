@@ -76,12 +76,20 @@
   </table>
 
 <h2>Reviews</h2>
+<form action="{% url 'add_reviews' recipe.id %}" method="POST">
+  {% csrf_token %}
+  <table>
+      {{ review_form.as_table }}
+  <table>
+  <input type="submit" value="Add Review">
+</form>
 <table>
     <thead>
       <tr>
         <th>User</th>
         <th>Rating</th>
         <th>Review</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -90,6 +98,12 @@
           <td>{{ review.user }}</td>
           <td>{{ review.rating }}</td>
           <td>{{ review.comment }}</td>
+          <td>
+            <form action="{% url 'reviews_delete' review.id %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="X">
+            </form>
+          </td>  
         </tr>
       {% endfor %}
     </tbody>
