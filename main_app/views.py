@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Avg
 
 from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction
 from .forms import InstructionForm, IngredientForm
@@ -45,6 +46,23 @@ class RestaurantDetail(DetailView):
 class MenuItemDetail(DetailView):
     model = MenuItem
     fields = '__all__'
+
+    @property
+    def menu_item(self):
+        return self.kwargs['pk'] 
+
+    def get_context_data(self, **kwargs):
+        context = super(MenuItemDetail, self).get_context_data(**kwargs)
+        recipes_set = MenuItem.objects.get(id=self.menu_item).recipe_set.all()
+        recipes = [{
+            'id':recipe.id,
+            'name':recipe.name,
+            'img':recipe.img,
+            'time':recipe.time,
+            'avg_rating':recipe.review_set.all().aggregate(Avg('rating'))['rating__avg']
+        } for recipe in recipes_set]
+        context['recipes'] = recipes
+        return context
 
 class RecipeDetail(DetailView):
     model = Recipe

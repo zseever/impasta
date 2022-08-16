@@ -9,13 +9,13 @@
 <p>Restaurant: {{ menuitem.restaurant.name }}</p>
 
 <h1>Related Recipes</h1>
-{% for recipe in menuitem.recipe_set.all %}
+{% for recipe in recipes %}
     <a href="{% url 'recipes_detail' recipe.id %}">
         <div>
             <img src="{{ recipe.img }}" class="index-img">
             <p>{{ recipe.name }}</p>
             <p>{{ recipe.time }}</p>
-            <p>avg rating</p>
+            <p>{{ recipe.avg_rating }}</p>
         </div>
     </a>
 {% endfor %}
