@@ -20,7 +20,7 @@ class Restaurant(models.Model):
 class MenuItem(models.Model):
     name = models.CharField(max_length=250)
     course = models.CharField(max_length=250)
-    price = models.IntegerField()
+    price = models.FloatField()
     desc = models.TextField(max_length=1000)
     img = models.CharField(max_length=250)
     restaurant = models.ForeignKey(
@@ -41,7 +41,7 @@ class Recipe(models.Model):
     menu_item = models.ManyToManyField(MenuItem, verbose_name="Related Menu Item(s)")
 
     def get_absolute_url(self):
-        return reverse('recipes_detail', kwargs={'recipe_id' : self.id})
+        return reverse('recipes_detail', kwargs={'pk' : self.id})
     
 class Instruction(models.Model):
     order = models.IntegerField()

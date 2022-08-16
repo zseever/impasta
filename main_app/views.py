@@ -82,6 +82,15 @@ class RecipeCreate(CreateView):
     def get_success_url(self) -> str:
         return f'/recipes/{self.object.id}'
 
+class RecipeUpdate(UpdateView):
+    model = Recipe
+    fields = '__all__'
+
+class RecipeDelete(DeleteView):
+    model = Recipe
+    success_url = '/'
+
+
 def add_instruction(request, recipe_id):
     form = InstructionForm(request.POST)
     if form.is_valid():
@@ -97,3 +106,15 @@ def add_ingredient(request, recipe_id):
         new_ingredient.recipe_id = recipe_id
         new_ingredient.save()
     return redirect('recipes_detail', pk=recipe_id)
+
+def delete_ingredient(request, ingredient_id):
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+    recipe = ingredient.recipe
+    ingredient.delete()
+    return redirect('recipes_detail', pk=recipe.id)
+
+def delete_instruction(request, instruction_id):
+    instruction = Instruction.objects.get(id=instruction_id)
+    recipe = instruction.recipe
+    instruction.delete()
+    return redirect('recipes_detail', pk=recipe.id)
