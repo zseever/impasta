@@ -4,9 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.db.models import Avg
+from django.contrib.auth.models import User
 
-from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction
-from .forms import InstructionForm, IngredientForm
+from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction, Review
+from .forms import InstructionForm, IngredientForm, ReviewForm
 
 # Create your views here.
 def home(request):
@@ -72,6 +73,7 @@ class RecipeDetail(DetailView):
         context = super(RecipeDetail, self).get_context_data(**kwargs)
         context['instruction_form'] = InstructionForm()
         context['ingredient_form'] = IngredientForm()
+        context['review_form'] = ReviewForm()
         return context
 
 class RecipeCreate(CreateView):
@@ -117,4 +119,19 @@ def delete_instruction(request, instruction_id):
     instruction = Instruction.objects.get(id=instruction_id)
     recipe = instruction.recipe
     instruction.delete()
+    return redirect('recipes_detail', pk=recipe.id)
+
+def add_review(request, recipe_id):
+    form = ReviewForm(request.POST)
+    if form.is_valid():
+        new_review = form.save(commit=False)
+        new_review.recipe_id = recipe_id
+        new_review.user = request.user
+        new_review.save()
+    return redirect('recipes_detail', pk=recipe_id)
+
+def delete_review(request, review_id):
+    review = Review.objects.get(id=review_id)
+    recipe = review.recipe
+    review.delete()
     return redirect('recipes_detail', pk=recipe.id)
