@@ -8,6 +8,7 @@ from django.db.models import Avg
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from operator import itemgetter
 
 from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction, Review
 from .forms import InstructionForm, IngredientForm, ReviewForm
@@ -15,8 +16,17 @@ from .forms import InstructionForm, IngredientForm, ReviewForm
 # Create your views here.
 def home(request):
     restaurants = Restaurant.objects.all()[:5]
-    # Render 5 restaurants - image + Name
-    return render(request,'home.html', { 'restaurants':restaurants})
+    recipes = [{
+            'id':recipe.id,
+            'name':recipe.name,
+            'img':recipe.img,
+            'avg_rating': recipe.review_set.all().aggregate(Avg('rating'))['rating__avg'] if len(recipe.review_set.all()) else 0
+    } for recipe in Recipe.objects.all()]
+    recipes = sorted(recipes, key=itemgetter('avg_rating'), reverse=True)[:5]
+    return render(request,'home.html', { 
+        'restaurants':restaurants,
+        'recipes':recipes,
+    })
 
 class RestaurantList(ListView):
     model = Restaurant
@@ -82,13 +92,16 @@ class RecipeDetail(DetailView):
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
     model = Recipe
-    fields = '__all__'
+    fields = ['name', 'img', 'time', 'tags', 'menu_item']
     success_url= '/recipes/'
     login_url = 'signup'
 
     def get_success_url(self) -> str:
         return f'/recipes/{self.object.id}'
-
+ 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class RecipeUpdate(LoginRequiredMixin, UpdateView):
     model = Recipe
@@ -110,6 +123,7 @@ def add_instruction(request, recipe_id):
     if form.is_valid():
         new_instruction = form.save(commit=False)
         new_instruction.recipe_id = recipe_id
+        new_instruction.user = request.user
         new_instruction.save()
     return redirect('recipes_detail', pk=recipe_id)
 
@@ -119,6 +133,7 @@ def add_ingredient(request, recipe_id):
     if form.is_valid():
         new_ingredient = form.save(commit=False)
         new_ingredient.recipe_id = recipe_id
+        new_ingredient.user = request.user
         new_ingredient.save()
     return redirect('recipes_detail', pk=recipe_id)
 

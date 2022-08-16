@@ -87,13 +87,15 @@
 
 <h2>Reviews</h2>
 {% if user.is_authenticated %}
-  <form action="{% url 'add_reviews' recipe.id %}" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ review_form.as_table }}
-    <table>
-    <input type="submit" value="Add Review">
-  </form>
+  {% if user != recipe.user %}
+    <form action="{% url 'add_reviews' recipe.id %}" method="POST">
+      {% csrf_token %}
+      <table>
+          {{ review_form.as_table }}
+      <table>
+      <input type="submit" value="Add Review">
+    </form>
+  {% endif %}
 {% endif %}
 <table>
     <thead>
