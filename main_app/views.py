@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from operator import itemgetter
-import requests
+# import requests
 from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.parse import urlencode
@@ -19,7 +19,7 @@ from .forms import InstructionForm, IngredientForm, ReviewForm
 
 # Create your views here.
 def home(request):
-    fetch_data()
+    # fetch_data()
     restaurants = Restaurant.objects.all()[:5]
     recipes = [{
             'id':recipe.id,
