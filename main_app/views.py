@@ -19,7 +19,7 @@ from .forms import InstructionForm, IngredientForm, ReviewForm
 
 # Create your views here.
 def home(request):
-    fetch_data()
+    # fetch_data()
     restaurants = Restaurant.objects.all()[:5]
     recipes = [{
             'id':recipe.id,
