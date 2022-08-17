@@ -168,3 +168,8 @@ def delete_review(request, review_id):
     recipe = review.recipe
     review.delete()
     return redirect('recipes_detail', pk=recipe.id)
+
+def search_result(request):
+    search_term = request.GET.get('q', '')
+    recipes = Recipe.objects.filter(tags__icontains=search_term)
+    return render(request, 'search/results.html', {'recipes':recipes})

@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ menuitem.name.capitalize }}</h1>
-<div class="rest-info">
-    <p>Restaurant: {{ menuitem.restaurant.name }}</p>
-    <p>Course: {{ menuitem.course }}</p>
-    <p>Price: ${{ menuitem.price }}</p>
-    <p>Description: {{ menuitem.desc }}</p>
-    <img src="{{ menuitem.img }}" class="show-img">
-</div>
-
-<h1>Related Recipes</h1>
+<h1>Search Results</h1>
 <table>
     <thead>
         <th></th>
@@ -19,7 +10,7 @@
         <th>Avg Rating</th>
     </thead>
     <tbody>
-        {% for recipe in recipes %}
+        {% for recipe in recipes  %}
         <a href="{% url 'recipes_detail' recipe.id %}">
         <tr>
             <td><img src="{{ recipe.img }}" class="index-img"></td>
@@ -30,6 +21,5 @@
         {% endfor %}
     </tbody>
 </table>
-
 
 {% endblock %}
