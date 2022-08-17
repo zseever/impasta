@@ -2,20 +2,24 @@
 {% block content %}
 
 <h1>{{ menuitem.name.capitalize }}</h1>
-<p>{{ menuitem.course }}</p>
-<p>{{ menuitem.price }}</p>
-<p>{{ menuitem.desc }}</p>
-<img src="{{ menuitem.img }}" class="show-img">
-<p>Restaurant: {{ menuitem.restaurant.name }}</p>
+<div class="rest-info">
+    <p>{{ menuitem.course }}</p>
+    <p>{{ menuitem.price }}</p>
+    <p>{{ menuitem.desc }}</p>
+    <img src="{{ menuitem.img }}" class="show-img">
+    <p>Restaurant: {{ menuitem.restaurant.name }}</p>
+</div>
 
 <h1>Related Recipes</h1>
 {% for recipe in recipes %}
     <a href="{% url 'recipes_detail' recipe.id %}">
-        <div>
-            <img src="{{ recipe.img }}" class="index-img">
-            <p>{{ recipe.name }}</p>
-            <p>{{ recipe.time }}</p>
-            <p>{{ recipe.avg_rating }}</p>
+        <div class="flex-container">
+            <div>
+                <img src="{{ recipe.img }}" class="index-img">
+                <p>{{ recipe.name }}</p>
+                <p>{{ recipe.time }}</p>
+                <p>{{ recipe.avg_rating }}</p>
+            </div>
         </div>
     </a>
 {% endfor %}

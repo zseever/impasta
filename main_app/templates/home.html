@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div id="welcome-page">
+    <h1 id="welcome-msg">Welcome to Impasta</h1>
+    <div class="home-info">
+        <h4>"We aim to satisfy your restaurant cravings...</h4>
+        <img class="icon" src="https://i.imgur.com/E5xnHUB.png">
+        <h4>...whether you're goin' out or stayin' in"</h4>
+    </div>
+</div>
 <h1>Featured Restaurants</h1>
 <ul class="horiz-container">
     {% for restaurant in restaurants %}
