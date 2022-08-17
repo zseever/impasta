@@ -2,24 +2,85 @@
 {% block content %}
 
 <h1>Search Results</h1>
-<table>
-    <thead>
-        <th></th>
-        <th>Recipe Name</th>
-        <th>Prep Time</th>
-        <th>Avg Rating</th>
-    </thead>
-    <tbody>
-        {% for recipe in recipes  %}
-        <a href="{% url 'recipes_detail' recipe.id %}">
-        <tr>
-            <td><img src="{{ recipe.img }}" class="index-img"></td>
-            <td>{{ recipe.name }}</td>
-            <td>{{ recipe.time }}</td>
-            <td>{{ recipe.avg_rating }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+
+<h2>Recipes</h2>
+{% if recipes %}
+    <table>
+        <thead>
+            <th></th>
+            <th>Recipe Name</th>
+            <th>Prep Time</th>
+            <th>Avg Rating</th>
+        </thead>
+        <tbody>
+            {% for recipe in recipes  %}
+                <tr>
+                    <td><a href="{% url 'recipes_detail' recipe.id %}"><img src="{{ recipe.img }}" class="small-img"></a></td>
+                    <td><a href="{% url 'recipes_detail' recipe.id %}">{{ recipe.name }}</a></td>
+                    <td>{{ recipe.time }}</td>
+                    <td>
+                        {% if recipe.avg_rating >= 4.5 %} 
+                            <img src="https://i.imgur.com/3We2bhe.png" alt="star" class="star">
+                        {% elif recipe.avg_rating >= 3.5 %}
+                            <img src="https://i.imgur.com/cj2ACch.png" alt="star" class="star">
+                        {% elif recipe.avg_rating >= 2.5 %}
+                            <img src="https://i.imgur.com/hreAPA8.png" alt="star" class="star">
+                        {% elif recipe.avg_rating >= 1.5 %}
+                            <img src="https://i.imgur.com/CihqqJW.png" alt="star" class="star">
+                        {% elif recipe.avg_rating >= 0.5 %}
+                            <img src="https://i.imgur.com/fKsBvRO.png" alt="star" class="star">
+                        {% else %}
+                            <img src="https://i.imgur.com/eyRWDnH.png" alt="star" class="star">
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h3>No recipe results</h3>
+{% endif %}
+
+<h2>Restaurants</h2>
+{% if restaurants %}
+    <table>
+        <thead>
+            <th></th>
+            <th>Restaurant</th>
+        </thead>
+        <tbody>
+            {% for restaurant in restaurants %}
+                <tr>
+                    <td><a href="{% url 'restaurants_detail' restaurant.id %}"><img src="{{ restaurant.img }}" class="small-img"></a></td>
+                    <td><a href="{% url 'restaurants_detail' restaurant.id %}">{{ restaurant.name }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h3>No restaurant results</h3>
+{% endif %}
+
+<h2>Menu Items</h2>
+{% if menu_items %}
+    <table>
+        <thead>
+            <th></th>
+            <th>Menu Item Name</th>
+            <th>Restaurant</th>
+        </thead>
+        <tbody>
+            {% for item in menu_items  %}
+                <tr>
+                    <td><a href="{% url 'menuitems_detail' restaurant_id=item.restaurant.id pk=item.id %}"><img src="{{ item.img }}" class="small-img"></a></td>
+                    <td><a href="{% url 'menuitems_detail' restaurant_id=item.restaurant.id pk=item.id %}">{{ item.name }}</a></td>
+                    <td>{{ item.restaurant }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h3>No menu item results</h3>
+{% endif %}
 
 {% endblock %}
