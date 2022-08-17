@@ -15,7 +15,10 @@
 <body>
     <nav>
         <a href="/" class="align-left"><img src="https://i.imgur.com/zNXcbpI.png" alt="impasta"></a>
-        <a href="/">Search</a>
+        <form action="{% url 'search_results' %}" method="GET">
+            <input name="q" type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
         <a href="{% url 'restaurants_index' %}">Restaurants</a>
     {% if user.is_authenticated %}
         <a href="{% url 'recipes_create' %}">Add Recipe</a>
