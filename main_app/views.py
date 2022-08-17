@@ -171,5 +171,20 @@ def delete_review(request, review_id):
 
 def search_result(request):
     search_term = request.GET.get('q', '')
-    recipes = Recipe.objects.filter(tags__icontains=search_term)
-    return render(request, 'search/results.html', {'recipes':recipes})
+    recipes_tags = Recipe.objects.filter(tags__icontains=search_term)
+    recipes_names = Recipe.objects.filter(name__icontains=search_term)
+    recipes = list(set(recipes_tags) | set(recipes_names))
+    recipes = [{
+            'id':recipe.id,
+            'name':recipe.name,
+            'time':recipe.time,
+            'img':recipe.img,
+            'avg_rating': recipe.review_set.all().aggregate(Avg('rating'))['rating__avg'] if len(recipe.review_set.all()) else 0
+    } for recipe in recipes]
+    restaurants = Restaurant.objects.filter(name__icontains=search_term)
+    menu_items = MenuItem.objects.filter(name__icontains=search_term)
+    return render(request, 'search/results.html', {
+        'recipes':recipes,
+        'restaurants':restaurants,
+        'menu_items':menu_items,
+    })

@@ -34,6 +34,13 @@ a {
     width: 200px;
 }
 
+.small-img {
+    width:6vw;
+    height:6vw;
+    object-fit: cover;
+    overflow: hidden;
+}
+
 .index-img {
     width:20vh;
     height:20vh;
@@ -42,11 +49,13 @@ a {
 }
 
 .show-img {
-    width:40vw;
-    height:40vw;
+    width:25vw;
+    height:25vw;
     object-fit: cover;
     overflow: hidden;
 }
+
+
 
 h1 {
     text-align: center;
@@ -88,15 +97,6 @@ h1 {
     align-items: center;
 }
 
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 65vw;
-    margin: auto;
-    text-align: center;
-}
-
 .icon {
     margin: auto;
     display: block;
@@ -129,4 +129,10 @@ h1 {
 
 #welcome-msg {
     font-size: 4vmin;
+}
+
+.star {
+    width:8.5vw;
+    height:2.5vh;
+    margin-right:-0.5vw;
 }
