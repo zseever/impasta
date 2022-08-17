@@ -9,12 +9,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from operator import itemgetter
+import requests
+from urllib.error import HTTPError
+from urllib.parse import quote
+from urllib.parse import urlencode
 
 from .models import Restaurant, MenuItem, Recipe, Ingredient, Instruction, Review
 from .forms import InstructionForm, IngredientForm, ReviewForm
 
 # Create your views here.
 def home(request):
+    fetch_data()
     restaurants = Restaurant.objects.all()[:5]
     recipes = [{
             'id':recipe.id,
@@ -188,3 +193,49 @@ def search_result(request):
         'restaurants':restaurants,
         'menu_items':menu_items,
     })
+
+def request_data(host, path, api_key, url_params=None):
+
+    url_params = url_params or {}
+    url = '{0}{1}'.format(host, quote(path.encode('utf8')))
+    headers = {
+        'Authorization': 'Bearer %s' % api_key,
+    }
+
+    print(u'Querying {0} ...'.format(url))
+
+    response = requests.request('GET', url, headers=headers, params=url_params)
+
+    return response.json()
+
+def fetch_data():
+    category_list = [
+        {'category':'italian','cuisine':'Italian'},
+        {'category':'newamerican,tradamerican','cuisine':'American'},
+        {'category':'indpak','cuisine':'Indian'},
+        {'category':'chinese','cuisine':'Chinese'},
+        {'category':'japanese,french,mexican','cuisine':'Other'},
+    ]
+
+    for category in category_list:
+        url_params = {
+        'term': 'restaurants',
+        'location': 'New York City'.replace(' ','+'),
+        'categories': category['category'],
+        'limit': 10
+        }
+        api_key = 'jIf-E4-uxH1zRUZUNX_TyhPGMdjP8xtoEki2HrRvGeo7HMfDoB0ebjMT1hf7telobrfrhivRXzTEn47jnYugK3C8uQXAgK2bFF__Oz3ryas-lh7b3ZdkwvyG8jD8YnYx'
+        restaurants_test = request_data('https://api.yelp.com','/v3/businesses/search',api_key, url_params=url_params)['businesses']
+
+        for restaurant in restaurants_test:
+            cuisine = category['cuisine']
+
+            new_restaurant = Restaurant(
+                name = restaurant['name'],
+                address = restaurant['location']['display_address'][0]+', '+restaurant['location']['display_address'][1],
+                phone = restaurant['display_phone'],
+                cuisine = cuisine,
+                desc = restaurant['url'],
+                img = restaurant['image_url']
+            )
+            new_restaurant.save()

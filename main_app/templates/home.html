@@ -5,7 +5,7 @@
     <h1 id="welcome-msg">Welcome to Impasta</h1>
     <div class="home-info">
         <h4>"We aim to satisfy your restaurant cravings...</h4>
-        <img class="icon" src="https://i.imgur.com/E5xnHUB.png">
+        <img class="icon" src="https://i.imgur.com/PZUAvcu.png">
         <h4>...whether you're goin' out or stayin' in"</h4>
     </div>
 </div>
@@ -13,7 +13,6 @@
 <ul class="horiz-container">
     {% for restaurant in restaurants %}
     <a href="{% url 'restaurants_detail' restaurant.id %}">
-        <!-- fix the css because of this anchor tag, add links once we have restaurant show page -->
         <div class="rest-container">
             <div class="empty-container"></div>
             <img src="{{ restaurant.img }}" class="index-img" alt="{{ restaurant.name }}">
