@@ -3,10 +3,12 @@
 <h1>{{ restaurant.name }}</h1>
 <div class="rest-info">
     <img src="{{ restaurant.img }}" class="show-img">
-    <p>Address: {{ restaurant.address }}</p>
-    <p>Phone Number: {{ restaurant.phone }}</p>
-    <p>Cuisine: {{ restaurant.cuisine }}</p>
-    <a href="{{ restaurant.desc }}">{{ restaurant.name }}'s Website</a>
+    <div class="vert-container">
+        <p>Address: {{ restaurant.address }}</p>
+        <p>Phone Number: {{ restaurant.phone }}</p>
+        <p>Cuisine: {{ restaurant.cuisine }}</p>
+        <a href="{{ restaurant.desc }}">{{ restaurant.name }}'s Website</a>
+    </div>
 </div>
 
 <div class="flex-container">
