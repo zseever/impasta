@@ -3,11 +3,13 @@
 
 <h1>Log In</h1>
 
-<form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Log In">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
+<div class="center-form form">
+    <form class="ing-form" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="center-align" type="submit" value="Log In">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+</div>
 
 {% endblock %}

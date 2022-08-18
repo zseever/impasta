@@ -34,7 +34,7 @@
             <thead>
             <tr>
                 <th class="user-column"></th>
-                <th class="review-column">Review</th>
+                <th class="review-column"></th>
                 <th></th>
             </tr>
             </thead>
@@ -75,18 +75,19 @@
     <div class="recipe-column">
         <h2>Ingredients</h2>
         {% if user == recipe.user %}
-        <form action="{% url 'add_ingredients' recipe.id %}" method="POST">
+        <form class="ing-form" action="{% url 'add_ingredients' recipe.id %}" method="POST">
             {% csrf_token %}
             <table>
                 {{ ingredient_form.as_table }}
-            <table>
-            <input type="submit" value="Add Ingredient">
+            </table>
+            <span></span>
+            <input class="center-align" type="submit" value="Add Ingredient">
         </form>
         {% endif %}
         <table class="">
         <thead>
             <tr>
-            <th>Ingredient</th>
+            <th></th>
             <th></th>
             </tr>
         </thead>
@@ -110,26 +111,27 @@
     <div class="recipe-column">
         <h2>Instructions</h2>
         {% if user == recipe.user %}
-        <form action="{% url 'add_instructions' recipe.id %}" method="POST">
+        <form class="review-form ing-form" action="{% url 'add_instructions' recipe.id %}" method="POST">
             {% csrf_token %}
             <table>
                 {{ instruction_form.as_table }}
-            <table>
-            <input type="submit" value="Add Instruction">
+            </table>
+            <span></span>
+            <input class="center-align" type="submit" value="Add Instruction">
         </form>
         {% endif %}  
-        <table>
+        <table class="recipe-reviews">
             <thead>
             <tr>
-                <th>Step #</th>
-                <th>Instruction</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {% for instruction in recipe.instruction_set.all %}
                 <tr>
-                <td>{{ instruction.order }}</td>
+                <td class="step-column">{{ instruction.order }}</td>
                 <td>{{ instruction.step }}</td>
                 <td>
                     {% if user == recipe.user %}
