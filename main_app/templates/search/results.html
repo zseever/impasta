@@ -47,12 +47,14 @@
             <thead>
                 <th></th>
                 <th></th>
+                <th></th>
             </thead>
             <tbody>
                 {% for restaurant in restaurants %}
                     <tr>
                         <td><a href="{% url 'restaurants_detail' restaurant.id %}"><img src="{{ restaurant.img }}" class="small-img"></a></td>
                         <td><a href="{% url 'restaurants_detail' restaurant.id %}">{{ restaurant.name }}</a></td>
+                        <td></td>
                     </tr>
                 {% endfor %}
             </tbody>
