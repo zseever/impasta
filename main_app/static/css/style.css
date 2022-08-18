@@ -45,6 +45,7 @@ a {
     height:6vw;
     object-fit: cover;
     overflow: hidden;
+    border-radius: .5vh
 }
 
 .index-img {
@@ -52,6 +53,7 @@ a {
     height:20vh;
     object-fit: cover;
     overflow: hidden;
+    border-radius: 1vh
 }
 
 .show-img {
@@ -114,28 +116,25 @@ h1 {
     margin-bottom:1.5vh;
 }
 
-.rest-container > img {
-    border-radius: 10px
-}
-
 .align-left {
     margin-right: auto;
 }
 
 .rest-info {
-    width: 50wv;
+    width: 65vw;
     margin: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .icon {
     margin: auto;
     display: block;
-    width:17vw;
+    /* width:17vw; */
     height: 15vh;
+    width: auto;
 }
 
 .home-info {
@@ -168,7 +167,8 @@ h1 {
 
 .star {
     width:10vw;
-    height:2.5vh;
+    /* height:2.5vh; */
+    height: auto;
     margin-right:-0.5vw;
 }
 
@@ -195,4 +195,58 @@ h1 {
     text-decoration: underline;
     font-size:2.5vmin;
     font-weight: bolder;
+}
+
+.rest-detail {
+    width:28vw;
+    height: 28vw;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    box-shadow: rgba(100, 100, 111, 0.33) 0px 7px 29px 0px;
+    background-color: var(--container);
+    margin-top: 1vh;
+}
+
+.flex-container {
+    height:30vh;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    box-shadow: rgba(100, 100, 111, 0.33) 0px 7px 29px 0px;
+    background-color: var(--container);
+    margin-top: 2vh;
+}
+
+.related-recipes {
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.related-recipes th, .related-recipes td {
+    width: 15vw;
+    text-align: center;
+}
+
+tr {
+    border-bottom: solid 1px var(--nav);
+}
+
+.recipe-horiz {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80vw;
+    margin: auto;
+}
+
+.recipe-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }

@@ -3,7 +3,7 @@
 <h1>{{ restaurant.name }}</h1>
 <div class="rest-info">
     <img src="{{ restaurant.img }}" class="show-img">
-    <div class="vert-container">
+    <div class="rest-detail">
         <p>Address: {{ restaurant.address }}</p>
         <p>Phone Number: {{ restaurant.phone }}</p>
         <p>Cuisine: {{ restaurant.cuisine }}</p>
@@ -15,8 +15,8 @@
     {% for item in restaurant.menuitem_set.all %}
     <a href="{% url 'menuitems_detail' restaurant_id=restaurant.id pk=item.id %}">
         <div>
-            <img src="{{ item.img }}" class="index-img">
             <p>{{ item.name }}</p>
+            <img src="{{ item.img }}" class="index-img">
             <p>{{ item.desc }}</p>
         </div>
     </a>

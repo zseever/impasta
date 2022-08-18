@@ -3,15 +3,17 @@
 
 <h1>{{ menuitem.name.capitalize }}</h1>
 <div class="rest-info">
-    <p>Restaurant: {{ menuitem.restaurant.name }}</p>
-    <p>Course: {{ menuitem.course }}</p>
-    <p>Price: ${{ menuitem.price }}</p>
-    <p>Description: {{ menuitem.desc }}</p>
     <img src="{{ menuitem.img }}" class="show-img">
+    <div class="rest-detail">
+        <p>Restaurant: {{ menuitem.restaurant.name }}</p>
+        <p>Course: {{ menuitem.course }}</p>
+        <p>Price: ${{ menuitem.price }}</p>
+        <p>Description: {{ menuitem.desc }}</p>
+    </div>    
 </div>
 
 <h1>Related Recipes</h1>
-<table>
+<table class="related-recipes">
     <thead>
         <th></th>
         <th>Recipe Name</th>
