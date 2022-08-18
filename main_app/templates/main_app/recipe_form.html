@@ -7,12 +7,15 @@
     <h1>Add New Recipe</h1>
 {% endif %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Next" class="btn">
-</form>
+<div class="center-form">
+    <form class="ing-form" action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <span></span>
+        <input class="center-align" type="submit" value="Next" class="btn">
+    </form>
+</div>
 
 {% endblock %}

@@ -5,10 +5,12 @@
 
 <p>{{ error_message }}</p>
 
-<form method="POST" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Sign Up">
-</form>
+<div class="center-form form">
+  <form class="ing-form" method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="center-align" type="submit" value="Sign Up">
+  </form>
+</div>
 
 {% endblock %}

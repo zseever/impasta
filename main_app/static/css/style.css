@@ -238,6 +238,7 @@ h1 {
 
 tr {
     border-bottom: solid 1px var(--nav);
+    margin: 0 0.5vh;
 }
 
 .recipe-horiz {
@@ -267,6 +268,11 @@ tr {
 .user-column > img {
     width: 6.5vw;
     margin-right: 2vw;
+}
+
+.step-column {
+    width: 4vw;
+    text-align: center;
 }
 
 .recipe-reviews {
@@ -301,6 +307,47 @@ input[type=submit] {
     font-family: 'Poiret One', cursive;
 }
 
-.review-form textarea, .review-form select {
+.review-form textarea, .review-form select, .review-form input[type=number] {
     background-color: var(--bg);
+    width: 25vw;
+}
+
+.review-form textarea {
+    height: 10vh;
+}
+
+.center-align {
+    text-align: center;
+    margin: auto;
+}
+
+.center-form {
+    display: flex;
+    justify-content: center;
+}
+
+.ing-form {
+    display: grid;
+    grid-template-columns: auto;
+    margin-bottom: 2vh;
+}
+
+.search-page {
+    width: 55vw;
+    background-color: var(--container);
+    box-shadow: rgba(100, 100, 111, 0.33) 0px 7px 29px 0px;
+}
+
+.form {
+    width: 23vw;
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1rem;
+    margin-bottom: 2rem;
+    margin: auto;
+}
+
+.form input {
+    width: 23vw;
 }
