@@ -14,4 +14,4 @@ class IngredientForm(ModelForm):
 class ReviewForm(ModelForm):
   class Meta:
     model = Review
-    fields = ['rating', 'comment']
+    fields = ['comment', 'rating']

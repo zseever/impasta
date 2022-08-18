@@ -191,6 +191,10 @@ h1 {
     border: solid 1px black;
 }
 
+#search-button:hover, input[type=submit]:hover {
+    cursor: pointer;
+}
+
 .cuisines {
     text-decoration: underline;
     font-size:2.5vmin;
@@ -249,4 +253,54 @@ tr {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: 50vh;
+    background-color: var(--container);
+    width: 38vw;
+    margin-bottom: 1vh;
+    box-shadow: rgba(100, 100, 111, 0.33) 0px 7px 29px 0px;
+}
+
+.review-column {
+    width: 23vw;
+}
+
+.user-column > img {
+    width: 6.5vw;
+    margin-right: 2vw;
+}
+
+.recipe-reviews {
+    border-collapse: collapse;
+}
+
+.recipe-detail {
+    justify-content: center;
+}
+
+.recipe-detail p {
+    margin-bottom: 0;
+    margin-top: .5vh;
+}
+
+.edit-delete a {
+    font-size: 2vmin;
+    border: solid .1vmin var(--nav);
+    background-color: #ddbac0;
+    padding: .3vmin 1vmin;
+    border-radius: .2vmin;
+}
+
+.edit-delete {
+    margin-bottom: 1vh;
+}
+
+input[type=submit] {
+    border: solid .1vmin var(--nav);
+    background-color: #ddbac0;
+    border-radius: .2vmin;
+    font-family: 'Poiret One', cursive;
+}
+
+.review-form textarea, .review-form select {
+    background-color: var(--bg);
 }

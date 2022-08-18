@@ -3,9 +3,9 @@
 
 <h1>{{ recipe.name }}</h1>
 <div class="recipe-horiz">
-    <div class="recipe-column">
+    <div class="recipe-column recipe-detail">
         {% if user == recipe.user %}
-        <div>
+        <div class="edit-delete">
             <a href="{% url 'recipes_update' recipe.id %}">Edit</a>
             <a href="{% url 'recipes_delete' recipe.id %}">Delete</a>
         </div>
@@ -23,29 +23,41 @@
         {% if user != recipe.user %}
             <form action="{% url 'add_reviews' recipe.id %}" method="POST">
             {% csrf_token %}
-            <table>
+            <table class="review-form">
                 {{ review_form.as_table }}
             <table>
             <input type="submit" value="Add Review">
             </form>
         {% endif %}
         {% endif %}
-        <table>
+        <table class="recipe-reviews">
             <thead>
             <tr>
-                <th>User</th>
-                <th>Rating</th>
-                <th>Review</th>
+                <th class="user-column"></th>
+                <th class="review-column">Review</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {% for review in recipe.review_set.all %}
                 <tr>
-                    <td>{{ review.user }}</td>
-                    <td>{{ review.rating }}</td>
-                    <td>{{ review.comment }}</td>
-                    <td>
+                    <td class="user-column">{{ review.user }} <br> 
+                        {% if review.rating >= 4.5 %} 
+                            <img src="https://i.imgur.com/3We2bhe.png" alt="star" class="star">
+                        {% elif review.rating >= 3.5 %}
+                            <img src="https://i.imgur.com/cj2ACch.png" alt="star" class="star">
+                        {% elif review.rating >= 2.5 %}
+                            <img src="https://i.imgur.com/hreAPA8.png" alt="star" class="star">
+                        {% elif review.rating >= 1.5 %}
+                            <img src="https://i.imgur.com/CihqqJW.png" alt="star" class="star">
+                        {% elif review.rating >= 0.5 %}
+                            <img src="https://i.imgur.com/fKsBvRO.png" alt="star" class="star">
+                        {% else %}
+                            <img src="https://i.imgur.com/eyRWDnH.png" alt="star" class="star">
+                        {% endif %}
+                    </td>
+                    <td class="review-column">{{ review.comment }}</td>
+                    <td class="delete-column">
                         {% if user == review.user %}
                         <form action="{% url 'reviews_delete' review.id %}" method="POST">
                             {% csrf_token %}
@@ -71,10 +83,9 @@
             <input type="submit" value="Add Ingredient">
         </form>
         {% endif %}
-        <table>
+        <table class="">
         <thead>
             <tr>
-            <th>Quantity</th>
             <th>Ingredient</th>
             <th></th>
             </tr>
@@ -82,8 +93,7 @@
         <tbody>
             {% for ingredient in recipe.ingredient_set.all %}
             <tr>
-                <td>{{ ingredient.quantity }}</td>
-                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.quantity }} of {{ ingredient.name }}</td>
                 <td>
                 {% if user == recipe.user %}
                 <form action="{% url 'ingredients_delete' ingredient.id %}" method="POST">
