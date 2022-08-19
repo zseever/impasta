@@ -1,13 +1,13 @@
 <div align ="center">
-<h1>:milk_glass: Oreo Fan Club :milk_glass:</h1>
-<h3>https://github.com/bevcook126/oreo-fan-club</h3>
+<h1>:spaghetti: Impasta :spaghetti:</h1>
+<h3>https://github.com/zseever/impasta</h3>
 <h5>Cyber Booleans</h5>
 <h4>Sidra Aktar, Beverly Cook, Zachary Seever</h4>
 [Impasta Pitch Deck](https://docs.google.com/presentation/d/1dgsYbuYMJiN5t90K81Bh1uxw5GJklvUIlZvxG-dPj9U/edit#slide=id.g1435ef5f901_0_66)
 </div>
 
 <div align = center><h2>Description :pencil:</h2></div>
-Restaurant food is delicious, but not always practical. Also, you probably :speaking_head:have food at home. If you don't know what to do with that food at home, use Impasta! Impasta shows you a list of restaurants, their menu items, and recipes that act as "dupes" for those menu items. The recipes conveniently include instructions, ingredients, and reviews. If you're not sure what to eat, you can search by keyword, restaurant name, or tags attached to the recipe.
+Restaurant food is delicious, but not always practical. Also, you probably :speaking_head:have food at home. If you don't know what to do with that food at home, use Impasta! Impasta aims to satisfy your restaurant cravings - whether you’re goin’ out or stayin’ in. Impasta shows you a list of restaurants, their menu items, and recipes that act as "dupes" for those menu items. The recipes conveniently include instructions, ingredients, and reviews. If you're not sure what to eat, you can search by keyword, restaurant name, or tags attached to the recipe.
 
 <div align = center><h2>Screenshots</h2><div>
 
