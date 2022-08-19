@@ -3,7 +3,7 @@
 <h3>https://github.com/zseever/impasta</h3>
 <h5>Cyber Booleans</h5>
 <h4>Sidra Aktar, Beverly Cook, Zachary Seever</h4>
-[Impasta Pitch Deck](https://docs.google.com/presentation/d/1dgsYbuYMJiN5t90K81Bh1uxw5GJklvUIlZvxG-dPj9U/edit#slide=id.g1435ef5f901_0_66)
+
 </div>
 
 <div align = center><h2>Description :pencil:</h2></div>
@@ -42,6 +42,7 @@ Restaurant food is delicious, but not always practical. Also, you probably :spea
 
 [Impasta Link](https://impasta-p3.herokuapp.com/)<br>
 [Link to Trello Board](https://trello.com/b/nNc6OQAq/p3)<br>
+[Impasta Pitch Deck](https://docs.google.com/presentation/d/1dgsYbuYMJiN5t90K81Bh1uxw5GJklvUIlZvxG-dPj9U/edit#slide=id.g1435ef5f901_0_66)<br>
 
 
 <div align = center><h2>Next Steps :fast_forward:</h2></div>
