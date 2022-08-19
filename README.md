@@ -2,7 +2,7 @@
 <h1>:spaghetti: Impasta :spaghetti:</h1>
 <h3>https://github.com/zseever/impasta</h3>
 <h5>Cyber Booleans</h5>
-<h4>Sidra Aktar, Beverly Cook, Zachary Seever</h4>
+<h4>Sidra Akhtar, Beverly Cook, Zachary Seever</h4>
 
 </div>
 
