@@ -3,11 +3,11 @@
 {% block content %}
   <h1>Delete Recipe</h1>
 
-  <h4>Are you sure you want to delete {{ object.name }}?</h4>
+  <h4 class="center-align">Are you sure you want to delete {{ object.name }}?</h4>
 
-  <form action="" method="POST">
+  <form class="center-form form" action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn">
-    <a href="{% url 'recipes_detail' recipe.id %}">Cancel</a>
+    <input class="center-align button-width" type="submit" value="Yes - Delete!" class="btn">
+    <a class="center-align button-width" id="cancel" href="{% url 'recipes_detail' recipe.id %}">Cancel</a>
   </form>
 {% endblock %}

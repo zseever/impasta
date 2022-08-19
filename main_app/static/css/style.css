@@ -300,7 +300,7 @@ tr {
     margin-bottom: 1vh;
 }
 
-input[type=submit] {
+input[type=submit], #cancel {
     border: solid .1vmin var(--nav);
     background-color: #ddbac0;
     border-radius: .2vmin;
@@ -350,4 +350,9 @@ input[type=submit] {
 
 .form input {
     width: 23vw;
+}
+
+.button-width.center-align {
+    margin-top: 3vh;
+    width: 10vw;
 }
